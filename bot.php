@@ -24,7 +24,7 @@
     }
 
     function sendMessage($chatId, $message) {
-        $url = GLOBALS[apiUrl]."/sendMessage?chat_id=".$chatId."&text=".urldecode($message);
+        $url = $GLOBALS[apiUrl]."/sendMessage?chat_id=".$chatId."&text=".urldecode($message);
         file_get_contents($url);
     }
 
