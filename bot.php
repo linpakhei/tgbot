@@ -10,11 +10,11 @@
     ); 
 
     $token = "1429201383:AAG97dhytzYKCBBttkTSSwICRXkJ416pmIk";
-    $apiUrl = "http://api.telegram.org/bot".$token;
+    $apiUrl = "https://api.telegram.org/bot".$token;
 
     $getUpdates = file_get_contents($apiUrl.'/getUpdates', false, stream_context_create($arrContextOptions));
 
-    $getUpdatesArray = json_decode($getUpdates);
+    $getUpdatesArray = json_decode($getUpdates,true);
 
     print_r($getUpdatesArray);
 ?>
