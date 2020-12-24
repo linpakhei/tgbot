@@ -28,8 +28,8 @@ if($chatType == "private") {
 }
 
 // Check command (Group)
-$commandPattern = "/@jlvariabot$/i":
-if($chatType == "group" && preg_match($commandPattern, $message);) {
+$commandPattern = "/@jlvariabot$/i";
+if($chatType == "group" && preg_match($commandPattern, $message)) {
     switch($message) {
         case "/test":
             sendMessage($chatId, "group good");
