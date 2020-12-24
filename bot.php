@@ -11,7 +11,7 @@ $update = json_decode($update, true);
 
 $chatId = $update["message"]["chat"]["id"];
 $message = $update["message"]["text"];
-$chatType = $update["chat"]["type"];
+$chatType = $update["message"]["chat"]["type"];
 
 // Check command (Private)
 if($chatType == "private") {
