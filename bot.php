@@ -1,37 +1,50 @@
 <?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
 
-    $token = "1429201383:AAG97dhytzYKCBBttkTSSwICRXkJ416pmIk";
-    $apiUrl = "https://api.telegram.org/bot".$token;
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-    $update = file_get_contents("php://input");
-    $update = json_decode($update, true);
+$token = "1429201383:AAG97dhytzYKCBBttkTSSwICRXkJ416pmIk";
+$apiUrl = "https://api.telegram.org/bot".$token;
 
-    $chatId = $update["message"]["chat"]["id"];
-    $message = $update["message"]["text"];
+$update = file_get_contents("php://input");
+$update = json_decode($update, true);
 
+$chatId = $update["message"]["chat"]["id"];
+$message = $update["message"]["text"];
+$chatType = $update["chat"]["type"];
+
+// Check command (Private)
+if($chatType == "private") {
     switch($message) {
         case "/test":
-            sendMessage($chatId, "good");
+            sendMessage($chatId, "private good");
             break;
         case "/hello":
-            sendMessage($chatId, "world");
+            sendMessage($chatId, "private world");
             break;
         default:
-            sendMessage($chatId, "default");
 
     }
+}
 
-    function sendMessage($chatId, $message) {
-        $url = $GLOBALS[apiUrl]."/sendMessage?chat_id=".$chatId."&text=".urldecode($message);
-        file_get_contents($url);
+// Check command (Group)
+$commandPattern = "/@jlvariabot$/i":
+if($chatType == "group" && preg_match($commandPattern, $message);) {
+    switch($message) {
+        case "/test":
+            sendMessage($chatId, "group good");
+            break;
+        case "/hello":
+            sendMessage($chatId, "group world");
+            break;
+        default:
+
     }
+}
 
+function sendMessage($chatId, $message) {
+    $url = $GLOBALS[apiUrl]."/sendMessage?chat_id=".$chatId."&text=".urldecode($message);
+    file_get_contents($url);
+}
 
-    // $getUpdates = file_get_contents($apiUrl.'/getUpdates', false);
-
-    // $getUpdatesArray = json_decode($getUpdates,true);
-
-    // print_r($getUpdatesArray);
 ?>
